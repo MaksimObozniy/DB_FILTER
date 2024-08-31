@@ -9,6 +9,7 @@ django.setup()
 
 from datacenter.models import Passcard, Visit  # noqa: E402
 
+
 def find_suspicious_visits(visits, min_duration_minutes=1000): #передаем список посетитетелей и время, которое ищем, будь то 10 минт или час
     suspicious_visits = [] #создаем пустой список куда будем их добавлять
     for visit in visits:
@@ -22,11 +23,8 @@ def find_suspicious_visits(visits, min_duration_minutes=1000): #передаем
             suspicious_visits.append(visit)
     return suspicious_visits
     
-    
 
 if __name__ == '__main__':
-    # Программируем здесь
-    
     passcards = Passcard.objects.all()
     for passcards in passcards:
         visits = Visit.objects.filter(passcard=passcards)
