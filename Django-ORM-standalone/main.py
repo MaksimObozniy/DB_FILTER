@@ -10,16 +10,16 @@ django.setup()
 from datacenter.models import Passcard, Visit  # noqa: E402
 
 
-def find_suspicious_visits(visits, min_duration_minutes=1000): #передаем список посетитетелей и время, которое ищем, будь то 10 минт или час
-    suspicious_visits = [] #создаем пустой список куда будем их добавлять
+def find_suspicious_visits(visits, min_duration_minutes=1000): 
+    suspicious_visits = []
     for visit in visits:
-        if visit.leaved_at is None: #делаем проверку на то, есть ли время выхода
-            leaved_at = now() #если нет, то он сейчас там и записываем туда нынешнее время
+        if visit.leaved_at is None:
+            leaved_at = now() 
         else:
-            leaved_at = visit.leaved_at #обратная ситуация соответственно есть время выхода
+            leaved_at = visit.leaved_at 
         delta = leaved_at - visit.entered_at
-        duration_in_minutes = delta.total_seconds() / 60 #переводим в удобный формат
-        if duration_in_minutes > min_duration_minutes:  #проверяем, что время не больше 60 минут, если больше то добавляем в список
+        duration_in_minutes = delta.total_seconds() / 60 
+        if duration_in_minutes > min_duration_minutes:
             suspicious_visits.append(visit)
     return suspicious_visits
     
