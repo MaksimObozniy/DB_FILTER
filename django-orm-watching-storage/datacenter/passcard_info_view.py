@@ -24,7 +24,7 @@ def passcard_info_view(request, passcode):
 
     for visit in visits:
         entered_at = localtime(visit.entered_at)
-        leaved_at = localtime(visit.leaved_at) if visit.leaved_at else localtime()
+        leaved_at = localtime(visit.leaved_at)
         duration = leaved_at - entered_at
         this_passcard_visits.append({
             'entered_at': entered_at.strftime('%d-%m-%Y %H:%M'),
