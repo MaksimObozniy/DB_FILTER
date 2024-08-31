@@ -13,8 +13,6 @@ def duration_at(visits):
 
 
 def storage_information_view(request):
-    # Программируем здесь
-
     visit = Visit.objects.all()
     for visits in visit:
         if visits.leaved_at == None:
@@ -28,6 +26,6 @@ def storage_information_view(request):
         }
     ]
     context = {
-        'non_closed_visits': non_closed_visits,  # не закрытые посещения
+        'non_closed_visits': non_closed_visits, 
     }
     return render(request, 'storage_information.html', context)
